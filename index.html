@@ -122,7 +122,7 @@
 
   <section class="listings grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mx-4 mb-10">
     <a href="service-details.html?service=tutoring" class="listing-card bg-white rounded-2xl overflow-hidden shadow-lg animate-fade-in" data-title="Academic Tutoring">
-      <img src="images/tutoring.jpg" alt="Tutoring Service" class="w-full h-48 object-cover" />
+      <img data-service="tutoring" src="images/tutoring.jpg" alt="Tutoring Service" class="w-full h-48 object-cover" />
       <div class="p-5">
         <div class="listing-title text-xl font-semibold text-gray-800">Academic Tutoring</div>
         <div class="listing-price text-gray-600">From $30/hr</div>
@@ -130,7 +130,7 @@
       </div>
     </a>
     <a href="service-details.html?service=petsitting" class="listing-card bg-white rounded-2xl overflow-hidden shadow-lg animate-fade-in" data-title="Pet Sitting">
-      <img src="images/petsitting.jpg" alt="Pet Sitting" class="w-full h-48 object-cover" />
+      <img data-service="petsitting" src="images/petsitting.jpg" alt="Pet Sitting" class="w-full h-48 object-cover" />
       <div class="p-5">
         <div class="listing-title text-xl font-semibold text-gray-800">Pet Sitting</div>
         <div class="listing-price text-gray-600">From $20/day</div>
@@ -138,7 +138,7 @@
       </div>
     </a>
     <a href="service-details.html?service=cleaning" class="listing-card bg-white rounded-2xl overflow-hidden shadow-lg animate-fade-in" data-title="Home Cleaning">
-      <img src="images/cleaning.jpg" alt="Home Cleaning" class="w-full h-48 object-cover" />
+      <img data-service="cleaning" src="images/cleaning.jpg" alt="Home Cleaning" class="w-full h-48 object-cover" />
       <div class="p-5">
         <div class="listing-title text-xl font-semibold text-gray-800">Home Cleaning</div>
         <div class="listing-price text-gray-600">From $50/visit</div>
@@ -146,7 +146,7 @@
       </div>
     </a>
     <a href="service-details.html?service=techsupport" class="listing-card bg-white rounded-2xl overflow-hidden shadow-lg animate-fade-in" data-title="Tech Support">
-      <img src="images/tech.jpg" alt="Tech Support" class="w-full h-48 object-cover" />
+      <img data-service="techsupport" src="images/tech.jpg" alt="Tech Support" class="w-full h-48 object-cover" />
       <div class="p-5">
         <div class="listing-title text-xl font-semibold text-gray-800">Tech Support</div>
         <div class="listing-price text-gray-600">From $40/hr</div>
@@ -154,7 +154,7 @@
       </div>
     </a>
     <a href="service-details.html?service=fitness" class="listing-card bg-white rounded-2xl overflow-hidden shadow-lg animate-fade-in" data-title="Personal Training">
-      <img src="images/fitness.jpg" alt="Personal Training" class="w-full h-48 object-cover" />
+      <img data-service="fitness" src="images/fitness.jpg" alt="Personal Training" class="w-full h-48 object-cover" />
       <div class="p-5">
         <div class="listing-title text-xl font-semibold text-gray-800">Personal Training</div>
         <div class="listing-price text-gray-600">From $45/session</div>
@@ -162,11 +162,11 @@
       </div>
     </a>
     <a href="service-details.html?service=therapy" class="listing-card bg-white rounded-2xl overflow-hidden shadow-lg animate-fade-in" data-title="Therapy & Counseling">
-      <img src="images/therapy.jpg" alt="Therapy" class="w-full h-48 object-cover" />
+      <img data-service="therapy" src="images/therapy.jpg" alt="Therapy" class="w-full h-48 object-cover" />
       <div class="p-5">
         <div class="listing-title text-xl font-semibold text-gray-800">Therapy & Counseling</div>
         <div class="listing-price text-gray-600">From $70/session</div>
-        <div class="listing-description만큼 text-gray-500 text-sm mt-2">Confidential mental health support from licensed professionals.</div>
+        <div class="listing-description text-gray-500 text-sm mt-2">Confidential mental health support from licensed professionals.</div>
       </div>
     </a>
   </section>
@@ -179,6 +179,20 @@
   </footer>
 
   <script>
+    // Load images from localStorage for each service
+    document.addEventListener('DOMContentLoaded', () => {
+      const images = document.querySelectorAll('.listing-card img[data-service]');
+      images.forEach(img => {
+        const service = img.getAttribute('data-service');
+        const savedImage = localStorage.getItem(`service-${service}-image`);
+        if (savedImage) {
+          img.src = savedImage; // Use base64 image from localStorage
+        }
+        // Default src is already set in HTML as fallback
+      });
+    });
+
+    // Filter listings based on search input
     function filterListings() {
       const input = document.getElementById('search-input').value.toLowerCase();
       const cards = document.querySelectorAll('.listing-card');
