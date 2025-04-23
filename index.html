@@ -97,16 +97,16 @@
   </header>
 
   <div class="scroll-options flex overflow-x-auto space-x-4 mx-4 my-8 pb-2" role="tablist">
-    <button class="scroll-item flex-shrink-0 px-4 py-2 bg-white rounded-full shadow-md font-semibold text-gray-700 hover:bg-purple-50 focus:outline-none focus:ring-2 focus:ring-purple-400" role="tab" aria-selected="true">Popular</button>
-    <button class="scroll-item flex-shrink-0 px-4 py-2 bg-white rounded-full shadow-md font-semibold text-gray-700 hover:bg-purple-50 focus:outline-none focus:ring-2 focus:ring-purple-400" role="tab">Tutoring</button>
-    <button class="scroll-item flex-shrink-0 px-4 py-2 bg-white rounded-full shadow-md font-semibold text-gray-700 hover:bg-purple-50 focus:outline-none focus:ring-2 focus:ring-purple-400" role="tab">Pet Sitting</button>
-    <button class="scroll-item flex-shrink-0 px-4 py-2 bg-white rounded-full shadow-md font-semibold text-gray-700 hover:bg-purple-50 focus:outline-none focus:ring-2 focus:ring-purple-400" role="tab">Cleaning</button>
-    <button class="scroll-item flex-shrink-0 px-4 py-2 bg-white rounded-full shadow-md font-semibold text-gray-700 hover:bg-purple-50 focus:outline-none focus:ring-2 focus:ring-purple-400" role="tab">Tech Support</button>
-    <button class="scroll-item flex-shrink-0 px-4 py-2 bg-white rounded-full shadow-md font-semibold text-gray-700 hover:bg-purple-50 focus:outline-none focus:ring-2 focus:ring-purple-400" role="tab">Fitness</button>
-    <button class="scroll-item flex-shrink-0 px-4 py-2 bg-white rounded-full shadow-md font-semibold text-gray-700 hover:bg-purple-50 focus:outline-none focus:ring-2 focus:ring-purple-400" role="tab">Mental Health</button>
-    <button class="scroll-item flex-shrink-0 px-4 py-2 bg-white rounded-full shadow-md font-semibold text-gray-700 hover:bg-purple-50 focus:outline-none focus:ring-2 focus:ring-purple-400" role="tab">Childcare</button>
-    <button class="scroll-item flex-shrink-0 px-4 py-2 bg-white rounded-full shadow-md font-semibold text-gray-700 hover:bg-purple-50 focus:outline-none focus:ring-2 focus:ring-purple-400" role="tab">Home Repair</button>
-    <button class="scroll-item flex-shrink-0 px-4 py-2 bg-white rounded-full shadow-md font-semibold text-gray-700 hover:bg-purple-50 focus:outline-none focus:ring-2 focus:ring-purple-400" role="tab">Beauty</button>
+    <button onclick="navigateToService('popular')" class="scroll-item flex-shrink-0 px-4 py-2 bg-white rounded-full shadow-md font-semibold text-gray-700 hover:bg-purple-50 focus:outline-none focus:ring-2 focus:ring-purple-400" role="tab" aria-selected="true">Popular</button>
+    <button onclick="navigateToService('tutoring')" class="scroll-item flex-shrink-0 px-4 py-2 bg-white rounded-full shadow-md font-semibold text-gray-700 hover:bg-purple-50 focus:outline-none focus:ring-2 focus:ring-purple-400" role="tab">Tutoring</button>
+    <button onclick="navigateToService('petsitting')" class="scroll-item flex-shrink-0 px-4 py-2 bg-white rounded-full shadow-md font-semibold text-gray-700 hover:bg-purple-50 focus:outline-none focus:ring-2 focus:ring-purple-400" role="tab">Pet Sitting</button>
+    <button onclick="navigateToService('cleaning')" class="scroll-item flex-shrink-0 px-4 py-2 bg-white rounded-full shadow-md font-semibold text-gray-700 hover:bg-purple-50 focus:outline-none focus:ring-2 focus:ring-purple-400" role="tab">Cleaning</button>
+    <button onclick="navigateToService('techsupport')" class="scroll-item flex-shrink-0 px-4 py-2 bg-white rounded-full shadow-md font-semibold text-gray-700 hover:bg-purple-50 focus:outline-none focus:ring-2 focus:ring-purple-400" role="tab">Tech Support</button>
+    <button onclick="navigateToService('fitness')" class="scroll-item flex-shrink-0 px-4 py-2 bg-white rounded-full shadow-md font-semibold text-gray-700 hover:bg-purple-50 focus:outline-none focus:ring-2 focus:ring-purple-400" role="tab">Fitness</button>
+    <button onclick="navigateToService('mentalhealth')" class="scroll-item flex-shrink-0 px-4 py-2 bg-white rounded-full shadow-md font-semibold text-gray-700 hover:bg-purple-50 focus:outline-none focus:ring-2 focus:ring-purple-400" role="tab">Mental Health</button>
+    <button onclick="navigateToService('childcare')" class="scroll-item flex-shrink-0 px-4 py-2 bg-white rounded-full shadow-md font-semibold text-gray-700 hover:bg-purple-50 focus:outline-none focus:ring-2 focus:ring-purple-400" role="tab">Childcare</button>
+    <button onclick="navigateToService('homerepair')" class="scroll-item flex-shrink-0 px-4 py-2 bg-white rounded-full shadow-md font-semibold text-gray-700 hover:bg-purple-50 focus:outline-none focus:ring-2 focus:ring-purple-400" role="tab">Home Repair</button>
+    <button onclick="navigateToService('beauty')" class="scroll-item flex-shrink-0 px-4 py-2 bg-white rounded-full shadow-md font-semibold text-gray-700 hover:bg-purple-50 focus:outline-none focus:ring-2 focus:ring-purple-400" role="tab">Beauty</button>
   </div>
 
   <div class="search-container flex justify-center mx-4 my-10">
@@ -179,6 +179,16 @@
   </footer>
 
   <script>
+    // Navigate to service-details.html with service parameter
+    function navigateToService(service) {
+      // For 'Popular', redirect to index.html (or customize as needed)
+      if (service === 'popular') {
+        window.location.href = 'index.html';
+      } else {
+        window.location.href = `service-details.html?service=${service}`;
+      }
+    }
+
     // Load images from localStorage for each service
     document.addEventListener('DOMContentLoaded', () => {
       const images = document.querySelectorAll('.listing-card img[data-service]');
@@ -188,7 +198,6 @@
         if (savedImage) {
           img.src = savedImage; // Use base64 image from localStorage
         }
-        // Default src is already set in HTML as fallback
       });
     });
 
